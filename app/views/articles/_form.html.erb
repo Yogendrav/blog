@@ -1,0 +1,33 @@
+<% form_for(@article, :html => {:multipart => true}) do |f| %>
+<%=f.file_field :image%><%end%>
+<%=form_for(@article) do |f|%>
+<ul>
+  <% @article.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <%end%>
+  </ul><br/>
+	<p><i><b>
+		<%=f.label :title%><br/>
+		<%=f.text_field :title%><br/>
+	</i></b>
+	</p>
+	<p><i>
+		<%=f.label :body%><br/>
+		<%=f.text_field :body%></i>
+
+	</p>
+	<p>
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list %>
+  </p>
+ <p>
+ 	<%if @article.image_file_name%>
+ 	<%=image_tag @article.image.url %>br/>
+ 	<%end%>
+ 	<%=f.label :image, "Attach an image"%><br/>
+<%=f.file_field :image%>
+ </p>
+	<p><%=f.submit 'Submit'%></p>
+	
+	</p>
+	<%end%>
